@@ -107,6 +107,14 @@ app.post('/books/:id/update', function(req, res) {
   res.redirect('/books');
 });
 
+app.post('/users/:id/update', function(req, res) {
+  var id = req.params.id;
+  var name = req.body.newName;
+  db.get('users').find({ id: id }).value().name = name;
+  
+  res.redirect('/users');
+});
+
 // listen for requests :)
 app.listen(process.env.PORT, () => {
   console.log("Server listening on port " + process.env.PORT);
